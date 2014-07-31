@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+	body{
+		margin: 00px;
+		padding: 00px;
+	}
+    </style>
+  </head>
+  <body>
+	<canvas id="canvas" width="650" height="300" 
+	style="border:3px solid #000000; background-color:white;" >
+	</canvas>
+	<form>
+	<input type="button" value="Line" onclick="line()" >
+	<input type="button" value="Pencil" onclick="pencil()" >
+	<input type="button" value="Circle" onclick="circle()" >
+	<input type="button" value ="rectangle" onclick="rectangle()">
+	<input type="submit" value ="reset">
+	<input type="submit" value ="save">
+	<input type="submit" value ="text" onclick="print_text()">
+	<input type="submit" value ="elipse">
+	</form>
+<script>
+document.body.background="skin.jpg";
+	
+var canvas = document.getElementById("canvas");
+var context=canvas.getContext('2d');
+
+function circle(){
+canvas.onmousedown=circledown;
+canvas.onmouseup=circleup;
+canvas.onmousemove=circlemove;
+function circledown(e){
+ img=context.getImageData(0,0,canvas.width,canvas.height);
+ startx=e.x;
+ starty=e.y;
+ drag3=true;
+}
+function circleup(e){
+drag3=false;
+}
+function circlemove(e){
+if (drag3){
+context.putImageData(img,0,0);
+endx=e.x;
+endy=e.y;
+context.beginPath();
+context.arc(Math.abs(endx+startx)/2,Math.abs(endy+starty)/2,Math.sqrt(Math.pow(endx-startx,2)+Math.pow(endy-starty,2))/2, 0, Math.PI*2, true);
+context.closePath();
+context.stroke();
+}}}
+
+function rectangle(){
+canvas.onmousedown=rectdown;
+canvas.onmouseup=rectup;
+canvas.onmousemove=rectmove;
+function rectdown(e){
+ img=context.getImageData(0,0,canvas.width,canvas.height);
+ startx=e.x;
+ starty=e.y;
+ drag2=true;
+}
+function rectup(e){
+drag2=false;
+}
+function rectmove(e){
+if (drag2){
+context.putImageData(img,0,0);
+rectw=e.x-startx;
+recth=e.y-starty;
+context.strokeRect(startx,starty,rectw,recth);
+}}}
+
+	</script>
+    </body>
+</html>`
+
+	function rectangle(){
+	canvas.onmousedown=rectangledown;
+	canvas.osnmouseup=rectangleup;
+	canvas.onmousemove=rectanglemove;	
+	
+	function rectangledown(e){
+	img=context.getImageData(0,0,canvas.width,canvas.height);		
+	j=e.x;
+	k=e.y;
+	drag4=true;	
+			}
+
+	function rectangleup(e){
+	drag4=false;
+			}	
+	
+	function rectanglemove(e){
+	if (drag4){
+	context.putImageData(img,0,0);
+	rectanglew=e.x-j;
+	rectangleh=e.y-k;
+	context.strokeRect(j,k,rectanglew,rectangleh);
+
+
